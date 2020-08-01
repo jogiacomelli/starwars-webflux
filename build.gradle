@@ -1,0 +1,38 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.southsystem.poc.webflux'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	jcenter()
+	maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	compile 'io.springfox:springfox-swagger2:3.0.0-SNAPSHOT'
+	compile 'io.springfox:springfox-swagger-ui:3.0.0-SNAPSHOT'
+	compile 'io.springfox:springfox-spring-webflux:3.0.0-SNAPSHOT'
+	compile 'org.mongodb:mongodb-driver-reactivestreams:1.13.1'
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+	testImplementation 'io.projectreactor:reactor-test'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+}
+
+test {
+	useJUnitPlatform()
+}
